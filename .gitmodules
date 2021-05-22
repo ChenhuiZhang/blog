@@ -1,0 +1,3 @@
+[submodule "themes/meilidu"]
+	path = themes/meilidu
+	url = https://github.com/HoverBaum/meilidu-hexo.git
