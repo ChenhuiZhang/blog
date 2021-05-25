@@ -1,3 +1,9 @@
 [submodule "themes/meilidu"]
 	path = themes/meilidu
 	url = https://github.com/HoverBaum/meilidu-hexo.git
+[submodule "themes/hexo-theme-matery"]
+	path = themes/hexo-theme-matery
+	url = https://github.com/blinkfox/hexo-theme-matery.git
+[submodule "next"]
+	path = themes/next
+	url = https://github.com/theme-next/hexo-theme-next
