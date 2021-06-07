@@ -16,6 +16,11 @@ jobs:
         with:
           ref: master
 
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@master
+        with:
+          remote: true
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
