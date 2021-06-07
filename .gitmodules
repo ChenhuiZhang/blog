@@ -7,3 +7,6 @@
 [submodule "next"]
 	path = themes/next
 	url = https://github.com/theme-next/hexo-theme-next
+[submodule "themes/minos"]
+	path = themes/minos
+	url = https://github.com/ppoffice/hexo-theme-minos.git
