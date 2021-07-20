@@ -1,6 +1,6 @@
 # QEMU
 
-*QEMU is a generic and open source machine emulator and virtualizer.*	
+*QEMU is a generic and open source machine emulator and virtualizer.*
 
 ## Boot the Linux
 
@@ -8,7 +8,7 @@
 
 1. Download the kernel:
 
-   `git clone https://github.com/torvalds/linux.git linux`		
+   `git clone https://github.com/torvalds/linux.git linux`
 
 2. Install the tool-chain:
 
