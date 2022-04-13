@@ -94,3 +94,7 @@ offsetof宏会计算成员member在结构体里的偏移量，然后结构体成
 * 结构体的起始地址和第一个成员变量的地址是一致的（编译器没有添加额外的信息在里面）
 * 结构体的布局是从低地址到高地址增长的，偏移量为正
 
+Reference:
+1. [Statement](https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html#Statement-Exprs)
+2. [Typeof](https://gcc.gnu.org/onlinedocs/gcc/Typeof.html)
+
