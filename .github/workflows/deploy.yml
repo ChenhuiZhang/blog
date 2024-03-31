@@ -8,36 +8,41 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
         with:
-          node-version: '12'
-
-      - name: Setup Hexo
-        env:
-          ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.email "zhangchenhui2006@gmail.com"
-          git config --global user.name "Hermes Zhang"
-          git config --global init.defaultBranch master
-          npm install hexo-cli -g
-          npm install
-
-      - name: Deploy
-        run: |
-          hexo clean
-          hexo deploy
+          node-version: '14'
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
