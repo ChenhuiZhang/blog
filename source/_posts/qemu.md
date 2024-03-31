@@ -1,4 +1,8 @@
-# QEMU
+---
+title: QEMU
+date: 2021-04-10 12:42:27
+tags: kernel
+---
 
 *QEMU is a generic and open source machine emulator and virtualizer.*
 
